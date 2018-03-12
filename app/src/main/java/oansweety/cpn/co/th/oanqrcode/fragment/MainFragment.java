@@ -1,5 +1,6 @@
 package oansweety.cpn.co.th.oanqrcode.fragment;
 
+import android.content.Intent;
 import android.icu.text.Replaceable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,11 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import oansweety.cpn.co.th.oanqrcode.R;
+import oansweety.cpn.co.th.oanqrcode.ServiceActivity;
 import oansweety.cpn.co.th.oanqrcode.utility.GetAllData;
 import oansweety.cpn.co.th.oanqrcode.utility.MyAlert;
 import oansweety.cpn.co.th.oanqrcode.utility.MyConstance;
@@ -98,7 +101,22 @@ public class MainFragment extends Fragment{
                             myAlert.myDialog("User False",
                                     "No this User in my Database");
 
-                        }
+                        } else if (passwordString.equals(loginStrings[3]))
+                            {
+                                            //pasword true
+
+                                Toast.makeText(getActivity() ," Welcome " + loginStrings[1],Toast.LENGTH_SHORT).show();
+                                Intent intent= new Intent(getActivity(), ServiceActivity.class);
+                                intent.putExtra("Login",loginStrings);
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+                            else
+                            {
+                                //password false
+                                MyAlert myAlert = new MyAlert(getActivity());
+                                myAlert.myDialog("Password False","Please Try Again password False");
+                            }
 
                     } catch (Exception e) {
                         e.printStackTrace();
