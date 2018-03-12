@@ -69,13 +69,13 @@ public class MainFragment extends Fragment{
                         Log.d("8MarchV1", "JSON ==> " + jsonString);
 
                         JSONArray jsonArray = new JSONArray(jsonString);
+                        String[] columnUserStrings = myConstance.getColumnUserTableStrings();
+                        String[] loginStrings = new String[columnUserStrings.length];
+                        boolean userStatus = true;
 
                         for (int i = 0; i < jsonArray.length(); i+=1) {
 
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            String[] columnUserStrings = myConstance.getColumnUserTableStrings();
-                            String[] loginStrings = new String[columnUserStrings.length];
-                            boolean userStatus = true;
 
                             if (userString.equals(jsonObject.getString("User"))) {
 //                                User True
@@ -92,6 +92,13 @@ public class MainFragment extends Fragment{
 
                         }   // for
 
+                        if (userStatus) {
+//                            User False
+                            MyAlert myAlert = new MyAlert(getActivity());
+                            myAlert.myDialog("User False",
+                                    "No this User in my Database");
+
+                        }
 
                     } catch (Exception e) {
                         e.printStackTrace();
