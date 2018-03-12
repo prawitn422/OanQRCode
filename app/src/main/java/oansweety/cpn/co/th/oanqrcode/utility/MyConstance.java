@@ -9,6 +9,11 @@ public class MyConstance {
     private String urlAddUser = "http://androidthai.in.th/cent/addDataOan.php";
     private String urlReadAllUser = "http://androidthai.in.th/cent/getAllDataOan.php";
 
+    private String[] columnUserTableStrings = new String[]{"id", "Name", "User", "Password"};
+    public String[] getColumnUserTableStrings() {
+        return columnUserTableStrings;
+    }
+
     public String getUrlReadAllUser() {
         return urlReadAllUser;
     }
@@ -16,7 +21,6 @@ public class MyConstance {
     public String getUrlAddUser() {
         return urlAddUser;
     }
-
 
 
 }
