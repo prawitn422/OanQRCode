@@ -48,11 +48,11 @@ public class ShowAllFragment extends Fragment{
 
             JSONArray jsonArray = new JSONArray(jsonString);
 
-            String[] nameFoodStrings = new String[jsonArray.length()];
-            String[] imagePathStrings = new String[jsonArray.length()];
-            String[] categoryStrings = new String[jsonArray.length()];
-            String[] priceStrings = new String[jsonArray.length()];
-            String[] detailStrings = new String[jsonArray.length()];
+            final String[] nameFoodStrings = new String[jsonArray.length()];
+            final String[] imagePathStrings = new String[jsonArray.length()];
+            final String[] categoryStrings = new String[jsonArray.length()];
+            final String[] priceStrings = new String[jsonArray.length()];
+            final String[] detailStrings = new String[jsonArray.length()];
 
 
 
@@ -75,7 +75,12 @@ public class ShowAllFragment extends Fragment{
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
+//                    replace
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentServiceFragment,DetailFragment.detailInstance(
+                                nameFoodStrings[i],
+                                imagePathStrings[i],categoryStrings[i],priceStrings[i],detailStrings[i]))
+                            .addToBackStack(null).commit();
 
                 }
             });
